@@ -27,6 +27,8 @@ func main() {
 	appendDemo2()
 	appendDemo3()
 	appendDemo4()
+	copyDemo()
+	appendDemo5()
 }
 
 func arr(x [2]int) {
@@ -126,4 +128,38 @@ func appendDemo4() {
 	a := []int{1, 2, 3, 4, 5}
 	doAppend(a[0:2:2])
 	fmt.Println(a)
+}
+
+func copyDemo() {
+	numbers := make([]int, 0)
+
+	for i := 0; i < 10; i++ {
+		numbers = append(numbers, i)
+	}
+
+	copyA := make([]int, len(numbers))
+
+	fmt.Println("copy cnt:", copy(copyA, numbers))
+	fmt.Println("copied data:", copyA)
+
+	copyB := make([]int, 3)
+	fmt.Println("copy cnt:", copy(copyB, numbers[2:5]))
+	fmt.Println("copied data:", copyB)
+
+	copyC := make([]int, 3)
+	fmt.Println("copy cnt:", copy(copyC, numbers))
+	fmt.Println("copied data:", copyC)
+}
+
+func appendDemo5() {
+	numbers := [...]int{1, 2, 3, 4, 5}
+	fmt.Println(numbers)
+
+	index := 2
+
+	fmt.Println(numbers[:index], numbers[index+1:])
+
+	deletedNumbers := append(numbers[:index], numbers[index+1:]...)
+
+	fmt.Println(deletedNumbers)
 }
